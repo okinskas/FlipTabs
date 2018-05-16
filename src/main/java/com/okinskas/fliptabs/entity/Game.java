@@ -1,16 +1,18 @@
-package com.okinskas.fliptabs;
-
-import com.okinskas.fliptabs.entity.Board;
-import com.okinskas.fliptabs.entity.Tab;
+package com.okinskas.fliptabs.entity;
 
 public class Game {
 
-    public Game() {
+    private final Board board;
 
-        Board board = new Board();
+    public Game() {
+        board = new Board();
     }
 
-    public static boolean hasWon(Board board) {
+    public Board getBoard() {
+        return board;
+    }
+
+    public boolean hasWon() {
         for (int i = 0; i < Board.BOARD_X; i++) {
             for (int j = 0; j < Board.BOARD_Y; j++) {
                 if (board.getTabState(i, j) == 0) {

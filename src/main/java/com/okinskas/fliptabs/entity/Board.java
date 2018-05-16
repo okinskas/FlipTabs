@@ -7,10 +7,10 @@ public class Board {
 
     private Tab[][] boardArray = new Tab[BOARD_X][BOARD_Y];
 
-    public Board() {
-        for (Tab[] x : boardArray) {
-            for (int j = 0; j < x.length; j++) {
-                x[j] = new Tab();
+    Board() {
+        for (int x = 0; x < BOARD_X; x++) {
+            for (int y = 0; y < BOARD_Y; y++) {
+                boardArray[x][y] = new Tab(x, y);
             }
         }
     }
@@ -28,10 +28,11 @@ public class Board {
 
     public void flipSequence(int x, int y) {
 
-        for (int i = 0; i < boardArray.length; i++) {
-            for (int j = 0; j < boardArray[i].length; j++) {
-                if ((i == x && (j == y - 1 || j == y + 1))
-                        || (j == x && (i == y - 1 || i == y + 1))) {
+        for (int i = 0; i < BOARD_X; i++) {
+            for (int j = 0; j < BOARD_Y; j++) {
+                if ((i == x && j == y)
+                        || (i == x && (j == y - 1 || j == y + 1))
+                        || (j == y && (i == x - 1 || i == x + 1))) {
                     boardArray[i][j].flip();
                 }
             }
