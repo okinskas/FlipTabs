@@ -1,8 +1,8 @@
-package com.okinskas.fliptabs.frontend;
+package com.okinskas.fliptile.frontend;
 
-import com.okinskas.fliptabs.entity.Board;
-import com.okinskas.fliptabs.entity.Game;
-import com.okinskas.fliptabs.entity.Tile;
+import com.okinskas.fliptile.entity.Board;
+import com.okinskas.fliptile.entity.Game;
+import com.okinskas.fliptile.entity.Tile;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

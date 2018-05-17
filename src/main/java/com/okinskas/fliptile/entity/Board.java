@@ -1,4 +1,4 @@
-package com.okinskas.fliptabs.entity;
+package com.okinskas.fliptile.entity;
 
 public class Board {
 

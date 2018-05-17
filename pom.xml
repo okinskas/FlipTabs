@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.okinskas</groupId>
-    <artifactId>fliptabs</artifactId>
+    <artifactId>fliptile</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
         <dependency>
@@ -23,7 +23,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.okinskas.fliptabs.frontend.FlipTileApp</mainClass>
+                            <mainClass>com.okinskas.fliptile.frontend.FlipTileApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
