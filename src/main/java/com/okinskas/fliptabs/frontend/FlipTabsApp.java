@@ -14,14 +14,17 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FlipTabsApp extends Application {
 
     private final Game game = new Game();
-    private static final int PADDING = 5;
+    private static final int PADDING = 10;
+    private static final int BUTTON_PADDING = 30;
+    private static final String BUTTON_COLOUR_OFF = "#ffffff";
+    private static final String BUTTON_COLOUR_ON = "#000000";
+
     private Map<Button, Tab> buttonTabMap = new HashMap<Button, Tab>();
 
     public static void main(String[] args) {
@@ -40,7 +43,8 @@ public class FlipTabsApp extends Application {
         for (int r = 0; r < Board.BOARD_X; r++) {
             for (int c = 0; c < Board.BOARD_Y; c++) {
                 final Tab tab = board.getTab(r, c);
-                final Button button = new Button(String.valueOf(tab.getState()));
+                int state = tab.getState();
+                final Button button = new Button();
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent actionEvent) {
                         board.flipSequence(tab.x, tab.y);
@@ -48,6 +52,9 @@ public class FlipTabsApp extends Application {
                     }
                 });
                 buttonTabMap.put(button, tab);
+                String colour = state ==  1 ? BUTTON_COLOUR_ON : BUTTON_COLOUR_OFF;
+                button.setStyle("-fx-padding: " + BUTTON_PADDING
+                        + "; -fx-background-color: " + colour);
                 grid.add(button, r, c);
             }
         }
@@ -59,7 +66,10 @@ public class FlipTabsApp extends Application {
 
     private void updateBoard() {
         for (Button b : buttonTabMap.keySet()) {
-            b.setText(String.valueOf(buttonTabMap.get(b).getState()));
+            int state = buttonTabMap.get(b).getState();
+            String colour = state ==  1 ? BUTTON_COLOUR_ON : BUTTON_COLOUR_OFF;
+            b.setStyle("-fx-padding: " + BUTTON_PADDING
+                    + "; -fx-background-color: " + colour);
         }
 
         if (game.hasWon()) {
