@@ -1,12 +1,12 @@
 package com.okinskas.fliptabs.entity;
 
-public class Tab {
+public class Tile {
 
     private int state;
     public final int x;
     public final int y;
 
-    public Tab(int x, int y) {
+    public Tile(int x, int y) {
         state = 0;
         this.x = x;
         this.y = y;

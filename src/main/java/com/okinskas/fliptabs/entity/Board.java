@@ -5,17 +5,17 @@ public class Board {
     public static final int BOARD_X = 5;
     public static final int BOARD_Y = 3;
 
-    private Tab[][] boardArray = new Tab[BOARD_X][BOARD_Y];
+    private Tile[][] boardArray = new Tile[BOARD_X][BOARD_Y];
 
     Board() {
         for (int x = 0; x < BOARD_X; x++) {
             for (int y = 0; y < BOARD_Y; y++) {
-                boardArray[x][y] = new Tab(x, y);
+                boardArray[x][y] = new Tile(x, y);
             }
         }
     }
 
-    public Tab getTab(int x, int y) {
+    public Tile getTab(int x, int y) {
         if (x < 0 || x >= BOARD_X || y < 0 || y >= BOARD_Y) {
             return null;
         }

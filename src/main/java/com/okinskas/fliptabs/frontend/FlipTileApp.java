@@ -2,7 +2,7 @@ package com.okinskas.fliptabs.frontend;
 
 import com.okinskas.fliptabs.entity.Board;
 import com.okinskas.fliptabs.entity.Game;
-import com.okinskas.fliptabs.entity.Tab;
+import com.okinskas.fliptabs.entity.Tile;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FlipTabsApp extends Application {
+public class FlipTileApp extends Application {
 
     private final Game game = new Game();
     private static final int PADDING = 10;
@@ -23,7 +23,7 @@ public class FlipTabsApp extends Application {
     private static final String BUTTON_COLOUR_OFF = "#ffffff";
     private static final String BUTTON_COLOUR_ON = "#000000";
 
-    private Map<Button, Tab> buttonTabMap = new HashMap<>();
+    private Map<Button, Tile> buttonTabMap = new HashMap<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -40,14 +40,14 @@ public class FlipTabsApp extends Application {
 
         for (int r = 0; r < Board.BOARD_X; r++) {
             for (int c = 0; c < Board.BOARD_Y; c++) {
-                final Tab tab = board.getTab(r, c);
-                int state = tab.getState();
+                final Tile tile = board.getTab(r, c);
+                int state = tile.getState();
                 final Button button = new Button();
                 button.setOnAction(actionEvent -> {
-                    board.flipSequence(tab.x, tab.y);
+                    board.flipSequence(tile.x, tile.y);
                     updateBoard();
                 });
-                buttonTabMap.put(button, tab);
+                buttonTabMap.put(button, tile);
                 String colour = state ==  0 ? BUTTON_COLOUR_OFF : BUTTON_COLOUR_ON;
                 button.setStyle("-fx-padding: " + BUTTON_PADDING
                         + "; -fx-background-color: " + colour);
@@ -76,7 +76,7 @@ public class FlipTabsApp extends Application {
             alert.showAndWait();
 
             for (Button b : buttonTabMap.keySet()) {
-                Tab t = buttonTabMap.get(b);
+                Tile t = buttonTabMap.get(b);
                 t.flip();
                 int state = t.getState();
                 String colour = state ==  0 ? BUTTON_COLOUR_OFF : BUTTON_COLOUR_ON;

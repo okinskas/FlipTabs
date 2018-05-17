@@ -13,11 +13,6 @@
             <artifactId>junit</artifactId>
             <version>RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>RELEASE</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -28,7 +23,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.okinskas.fliptabs.frontend.FlipTabsApp</mainClass>
+                            <mainClass>com.okinskas.fliptabs.frontend.FlipTileApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
