@@ -4,8 +4,6 @@ import com.okinskas.fliptabs.entity.Board;
 import com.okinskas.fliptabs.entity.Game;
 import com.okinskas.fliptabs.entity.Tab;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -25,7 +23,7 @@ public class FlipTabsApp extends Application {
     private static final String BUTTON_COLOUR_OFF = "#ffffff";
     private static final String BUTTON_COLOUR_ON = "#000000";
 
-    private Map<Button, Tab> buttonTabMap = new HashMap<Button, Tab>();
+    private Map<Button, Tab> buttonTabMap = new HashMap<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -45,14 +43,12 @@ public class FlipTabsApp extends Application {
                 final Tab tab = board.getTab(r, c);
                 int state = tab.getState();
                 final Button button = new Button();
-                button.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent actionEvent) {
-                        board.flipSequence(tab.x, tab.y);
-                        updateBoard();
-                    }
+                button.setOnAction(actionEvent -> {
+                    board.flipSequence(tab.x, tab.y);
+                    updateBoard();
                 });
                 buttonTabMap.put(button, tab);
-                String colour = state ==  1 ? BUTTON_COLOUR_ON : BUTTON_COLOUR_OFF;
+                String colour = state ==  0 ? BUTTON_COLOUR_OFF : BUTTON_COLOUR_ON;
                 button.setStyle("-fx-padding: " + BUTTON_PADDING
                         + "; -fx-background-color: " + colour);
                 grid.add(button, r, c);
@@ -67,7 +63,7 @@ public class FlipTabsApp extends Application {
     private void updateBoard() {
         for (Button b : buttonTabMap.keySet()) {
             int state = buttonTabMap.get(b).getState();
-            String colour = state ==  1 ? BUTTON_COLOUR_ON : BUTTON_COLOUR_OFF;
+            String colour = state ==  0 ? BUTTON_COLOUR_OFF : BUTTON_COLOUR_ON;
             b.setStyle("-fx-padding: " + BUTTON_PADDING
                     + "; -fx-background-color: " + colour);
         }
@@ -78,6 +74,15 @@ public class FlipTabsApp extends Application {
             alert.setHeaderText(null);
             alert.setContentText("Congratulations, you won!");
             alert.showAndWait();
+
+            for (Button b : buttonTabMap.keySet()) {
+                Tab t = buttonTabMap.get(b);
+                t.flip();
+                int state = t.getState();
+                String colour = state ==  0 ? BUTTON_COLOUR_OFF : BUTTON_COLOUR_ON;
+                b.setStyle("-fx-padding: " + BUTTON_PADDING
+                        + "; -fx-background-color: " + colour);
+            }
         }
     }
 }
